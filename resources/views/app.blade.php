@@ -52,6 +52,8 @@
 --}}
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +64,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('assets/img/Panensia.png') }}">
 	<!-- set the page title -->
-	<title>Panensia</title>
+	<title>Home | Panensia</title>
 	<!-- include the site Google Fonts stylesheet -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700%7CRoboto:300,400,500,700,900&display=swap" rel="stylesheet">
 	<!-- include the site bootstrap stylesheet -->
