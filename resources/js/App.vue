@@ -1,7 +1,11 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
-    <RouterView />
-</template>
+    <div id="app">
+      <router-view />
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'App'
+  };
+  </script>
