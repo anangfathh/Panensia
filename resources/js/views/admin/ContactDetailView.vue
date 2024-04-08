@@ -1,11 +1,5 @@
 <script>
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
     export default {
-    components: {
-        AdminNavComp,
-        AdminFooterComp
-    },
     data() {
       return {
         contact: null,

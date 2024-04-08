@@ -12,13 +12,13 @@
                         </li>
                         <li class="breadcrumb-item">Management</li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/products"> Product </a>
+                            <a href="/admin/resellers">Reseller </a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
 
-                <h1 class="m-0">Edit Product</h1>
+                <h1 class="m-0">Edit Reseller</h1>
             </div>
             <!-- end heading -->
         </div>
@@ -212,7 +212,7 @@ export default {
                 });
 
                 if (response.status === 200) {
-                    this.$router.push({ name: 'admin.resellers' });
+                    this.$router.push('/admin/resellers');
                     console.log('Reseller updated successfully');
                 } else {
                     const responseData = await response.json();
