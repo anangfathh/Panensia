@@ -120,7 +120,9 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-primary" @click="updateReseller">
+                        Update
+                    </button>
                 </div>
             </div>
         </div>
@@ -178,9 +180,12 @@ export default {
 
                 const formData = new FormData()
                 formData.append('logo', file)
-
+                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content
                 const response = await fetch(`/api/reseller/${this.id}/upload-logo`, {
                     method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
                     body: formData
                 })
 
@@ -198,9 +203,7 @@ export default {
         },
         async updateReseller() {
             try {
-                const csrfToken = document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute('content')
+                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content
                 const response = await fetch(`/api/reseller/edit/${this.id}`, {
                     method: 'PUT',
                     headers: {
@@ -210,12 +213,12 @@ export default {
                     body: JSON.stringify(this.resellerData)
                 })
 
-                if (response.ok) {
-                    // Redirect to the Reseller list after successful update
-                    this.$router.push({ name: 'admin.resellers' })
+                if (response.status === 200) {
+                    this.$router.push('/admin/resellers')
                     console.log('Reseller updated successfully')
                 } else {
-                    console.error('Failed to update reseller:', response.statusText)
+                    const responseData = await response.json()
+                    console.error('Failed to update reseller:', responseData)
                 }
             } catch (error) {
                 console.error('Error updating reseller:', error)
