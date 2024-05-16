@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reseller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ResellerController extends Controller
 {
@@ -66,9 +66,9 @@ class ResellerController extends Controller
      * @param \App\Models\Reseller $reseller
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(Request $request, Reseller $reseller)
+    public function edit(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
+        $validatedData = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|email',
@@ -78,14 +78,28 @@ class ResellerController extends Controller
             'link_social' => 'nullable|string',
             'is_active' => 'required|boolean',
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+    
+        // Retrieve the existing Reseller record from the database
+        $reseller = Reseller::find($id);
+    
+        if (!$reseller) {
+            return response()->json(['error' => 'Reseller not found'], 404);
         }
-
-        $reseller->update($request->all());
-
-        return response()->json($reseller, 200);
+    
+        // Update the attributes of the Reseller with validated data
+        $reseller->fill($validatedData);
+    
+        try {
+            $updated = $reseller->save();
+    
+            if ($updated) {
+                return response()->json(['message' => 'Reseller updated successfully'], 200);
+            } else {
+                return response()->json(['error' => 'Failed to update Reseller'], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to update Reseller: ' . $e->getMessage()], 500);
+        }
     }
 
     /**

@@ -131,22 +131,12 @@
                                         <span v-else>No Logo</span>
                                     </td>
                                     <td>
-                                        <router-link
-                                            :to="{
-                                                name: 'admin.reseller.edit',
-                                                params: { id: reseller.id }
-                                            }"
-                                        >
+                                        <router-link :to="`/admin/reseller/edit/${reseller.id}`">
                                             <button class="btn btn-success mr-1">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
                                         </router-link>
-                                        <router-link
-                                            :to="{
-                                                name: 'admin.reseller.detail',
-                                                params: { id: reseller.id }
-                                            }"
-                                        >
+                                        <router-link :to="`/admin/reseller/${reseller.id}`">
                                             <button class="btn btn-info mr-1">
                                                 <i class="fa fa-eye"></i>
                                             </button>
@@ -162,7 +152,7 @@
                             </template>
                             <template v-else>
                                 <tr>
-                                    <td colspan="7" class="text-center">Tidak ada produk</td>
+                                    <td colspan="7" class="text-center">Tidak ada reseller</td>
                                 </tr>
                             </template>
                         </tbody>
@@ -204,47 +194,27 @@ export default {
         },
         async deleteReseller(resellerId) {
             try {
-                const response = await fetch(`/api/resellers/${resellerId}`, {
-                    method: 'DELETE'
-                })
-                if (response.ok) {
-                    // Update resellers list after successful deletion
-                    this.fetchResellers()
-                } else {
-                    console.error('Failed to delete reseller:', response.statusText)
+                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+                const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus reseller ini?');
+                
+                if (confirmDelete) {
+                    const response = await fetch(`/api/resellers/${resellerId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        }
+                    });
+
+                    if (response.ok) {
+                        this.fetchResellers();
+                    } else {
+                        console.error('Failed to delete reseller:', response.statusText);
+                    }
                 }
             } catch (error) {
-                console.error('Error deleting reseller:', error)
-            }
-        },
-        async activateReseller(resellerId) {
-            try {
-                const response = await fetch(`/api/resellers/activate/${resellerId}`, {
-                    method: 'PUT'
-                })
-                if (response.ok) {
-                    // Update resellers list after successful activation
-                    this.fetchResellers()
-                } else {
-                    console.error('Failed to activate reseller:', response.statusText)
-                }
-            } catch (error) {
-                console.error('Error activating reseller:', error)
-            }
-        },
-        async deactivateReseller(resellerId) {
-            try {
-                const response = await fetch(`/api/resellers/deactivate/${resellerId}`, {
-                    method: 'PUT'
-                })
-                if (response.ok) {
-                    // Update resellers list after successful deactivation
-                    this.fetchResellers()
-                } else {
-                    console.error('Failed to deactivate reseller:', response.statusText)
-                }
-            } catch (error) {
-                console.error('Error deactivating reseller:', error)
+                console.error('Error deleting reseller:', error);
             }
         }
     }
