@@ -6,19 +6,19 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="/admin">
+                            <RouterLink to="/admin">
                                 <i class="material-icons icon-20pt">home</i>
-                            </a>
+                            </RouterLink>
                         </li>
                         <li class="breadcrumb-item">Management</li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/products"> Product </a>
+                            <RouterLink to="/admin/resellers"> Reseller </RouterLink>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
                 </nav>
 
-                <h1 class="m-0">Edit Product</h1>
+                <h1 class="m-0">Edit Reseller</h1>
             </div>
             <!-- end heading -->
         </div>

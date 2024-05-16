@@ -42,7 +42,9 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="/admin"><i class="material-icons icon-20pt">home</i></a>
+                            <RouterLink to="/admin"
+                                ><i class="material-icons icon-20pt">home</i></RouterLink
+                            >
                         </li>
                         <li class="breadcrumb-item">Management</li>
                         <li class="breadcrumb-item active" aria-current="page">Reseller</li>
@@ -131,22 +133,12 @@
                                         <span v-else>No Logo</span>
                                     </td>
                                     <td>
-                                        <router-link
-                                            :to="{
-                                                name: 'admin.reseller.edit',
-                                                params: { id: reseller.id }
-                                            }"
-                                        >
+                                        <router-link :to="`/admin/reseller/edit/${reseller.id}`">
                                             <button class="btn btn-success mr-1">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
                                         </router-link>
-                                        <router-link
-                                            :to="{
-                                                name: 'admin.reseller.detail',
-                                                params: { id: reseller.id }
-                                            }"
-                                        >
+                                        <router-link :to="`/admin/reseller/${reseller.id}`">
                                             <button class="btn btn-info mr-1">
                                                 <i class="fa fa-eye"></i>
                                             </button>

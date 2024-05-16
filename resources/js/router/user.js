@@ -2,12 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import UserLayout from '../layout/UserLay.vue'
 import HomeView from '../views/user/HomeView.vue'
-import AboutView from '../views/user/AboutView.vue'
+import AboutView from '../views/AboutView.vue'
 import NewsView from '../views/user/NewsView.vue'
 import NewsDetailView from '../views/user/NewsDetailView.vue'
 import ContactView from '../views/user/ContactView.vue'
 import ResellerView from '../views/user/ResellerView.vue'
-import ProdukView from '../views/user/ProdukView.vue'
+import ProdukView from '../views/ProdukView.vue'
 import ProdukDetailView from '../views/ProdukDetailView.vue'
 
 const userRouter = createRouter({
@@ -15,11 +15,11 @@ const userRouter = createRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
             component: UserLayout,
             children: [
                 {
                     path: '',
+                    name: 'home',
                     component: HomeView
                 },
                 {
@@ -61,7 +61,14 @@ const userRouter = createRouter({
         {
             path: '/news/detail/:id',
             name: 'news.detail',
-            component: NewsDetailView,
+            component: UserLayout,
+            children: [
+                {
+                    path: '',
+                    component: NewsDetailView,
+                    props: true
+                }
+            ],
             props: true
         },
         {
@@ -70,11 +77,11 @@ const userRouter = createRouter({
         },
         {
             path: '/contact',
-            name: 'contacts.create',
             component: UserLayout,
             children: [
                 {
                     path: '',
+                    name: 'contacts.create',
                     component: ContactView
                 },
                 {
@@ -86,7 +93,17 @@ const userRouter = createRouter({
         {
             path: '/reseller',
             name: 'reseller.create',
-            component: ResellerView
+            component: UserLayout,
+            children: [
+                {
+                    path: '',
+                    component: ResellerView
+                },
+                {
+                    path: ':any',
+                    component: ResellerView
+                }
+            ]
         },
         {
             path: '/produk',
@@ -106,7 +123,14 @@ const userRouter = createRouter({
         {
             path: '/produk/detail/:id',
             name: 'produk.detail',
-            component: ProdukDetailView,
+            component: UserLayout,
+            children: [
+                {
+                    path: '',
+                    component: ProdukDetailView,
+                    props: true
+                }
+            ],
             props: true
         }
     ]

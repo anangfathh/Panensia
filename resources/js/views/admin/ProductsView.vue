@@ -135,12 +135,7 @@ const deleteProduct = async (id) => {
                                     <td class="text-muted">{{ item.link_tiktok }}</td>
                                     <td class="text-muted">{{ item.updated_at }}</td>
                                     <td>
-                                        <RouterLink
-                                            :to="{
-                                                name: 'admin.product.edit',
-                                                params: { id: item.id }
-                                            }"
-                                        >
+                                        <RouterLink :to="`/admin/product/edit/${item.id}`">
                                             <button class="btn btn-success mr-1">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>

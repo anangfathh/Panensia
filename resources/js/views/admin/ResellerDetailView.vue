@@ -6,10 +6,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="#"><i class="material-icons icon-20pt">home</i></a>
+                                <RouterLink to="/admin"
+                                    ><i class="material-icons icon-20pt">home</i></RouterLink
+                                >
                             </li>
-                            <li class="breadcrumb-item">Pages</li>
-                            <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+                            <li class="breadcrumb-item">
+                                <RouterLink to="/admin/resellers"> Reseller</RouterLink>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
                         </ol>
                     </nav>
                     <h1 class="m-0">Reseller Profile</h1>
@@ -26,8 +30,7 @@
                                 <div
                                     class="d-flex justify-content-center flex-column text-center my-5 navbar-light"
                                 >
-                                    <a
-                                        href="index.html"
+                                    <div
                                         class="navbar-brand d-flex flex-column m-0"
                                         style="min-width: 0"
                                     >
@@ -37,7 +40,7 @@
                                             alt="Reseller Logo"
                                             width="200"
                                         />
-                                    </a>
+                                    </div>
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-lg">
@@ -87,14 +90,9 @@
 </template>
 
 <script>
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
+// import { RouterLink } from 'vue-router'
 
 export default {
-    components: {
-        AdminNavComp,
-        AdminFooterComp
-    },
     data() {
         return {
             resellerData: {

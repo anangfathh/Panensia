@@ -3,9 +3,6 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
-
 let name = ref('')
 const router = useRouter()
 
@@ -43,50 +40,54 @@ const createCategory = async () => {
     </main> -->
     <div class="mdk-drawer-layout__content page">
         <div class="container-fluid page__heading-container">
-  
-        <!-- Page Heding -->
-          <div class="page__heading">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                  <a href="/admin">
-                    <i class="material-icons icon-20pt">home</i>
-                  </a>
-                </li>
-                <li class="breadcrumb-item">Management</li>
-                <li class="breadcrumb-item">Product</li>
-                <li class="breadcrumb-item">
-                  <a href="/admin/product_categories">
-                    Product Category
-                  </a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Create
-                </li>
-              </ol>
-            </nav>
-  
-            <h1 class="m-0">Create Product Category</h1>
-          </div>
-          <!-- end heading -->
-  
+            <!-- Page Heding -->
+            <div class="page__heading">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <RouterLink to="/admin">
+                                <i class="material-icons icon-20pt">home</i>
+                            </RouterLink>
+                        </li>
+                        <li class="breadcrumb-item">Management</li>
+                        <li class="breadcrumb-item">Product</li>
+                        <li class="breadcrumb-item">
+                            <RouterLink to="/admin/product_categories">
+                                Product Category
+                            </RouterLink>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Create</li>
+                    </ol>
+                </nav>
+
+                <h1 class="m-0">Create Product Category</h1>
+            </div>
+            <!-- end heading -->
         </div>
-  
+
         <!-- Content -->
         <div class="card card-form">
-          <div class="row no-gutters">
-              <div class="col-lg-12 card-form__body card-body">
-                        <div class="form-row">
-                            <div class="col-12 col-md-12 mb-3">
-                                <label for="validationSample01">Category Name</label>
-                                <input v-model="name" type="text" class="form-control" id="validationSample01" placeholder="Category Name" required="" >
-                            </div>
+            <div class="row no-gutters">
+                <div class="col-lg-12 card-form__body card-body">
+                    <div class="form-row">
+                        <div class="col-12 col-md-12 mb-3">
+                            <label for="validationSample01">Category Name</label>
+                            <input
+                                v-model="name"
+                                type="text"
+                                class="form-control"
+                                id="validationSample01"
+                                placeholder="Category Name"
+                                required=""
+                            />
+                        </div>
                     </div>
-                    <button @click="createCategory()" class="btn btn-primary">Create Category</button>
-              </div>
-          </div>
-      </div>
+                    <button @click="createCategory()" class="btn btn-primary">
+                        Create Category
+                    </button>
+                </div>
+            </div>
+        </div>
         <!-- end Content -->
-  
     </div>
 </template>

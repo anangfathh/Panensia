@@ -2,9 +2,6 @@
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
-
 let product_categories = ref([])
 
 onMounted(async () => {
@@ -69,10 +66,14 @@ const deleteCategory = async (id) => {
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="/admin"><i class="material-icons icon-20pt">home</i></a>
+                            <RouterLink to="/admin"
+                                ><i class="material-icons icon-20pt">home</i></RouterLink
+                            >
                         </li>
                         <li class="breadcrumb-item">Management</li>
-                        <li class="breadcrumb-item"><a href="/admin/products">Products</a></li>
+                        <li class="breadcrumb-item">
+                            <RouterLink to="/admin/products">Products</RouterLink>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Products Category
                         </li>
@@ -123,16 +124,13 @@ const deleteCategory = async (id) => {
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.updated_at }}</td>
                                     <td>
-                                        <RouterLink
-                                            :to="{
-                                                name: 'admin.product_categories.edit',
-                                                params: { id: item.id }
-                                            }"
+                                        <router-link
+                                            :to="`/admin/product_categories/edit/${item.id}`"
                                         >
                                             <button class="btn btn-success mr-1">
                                                 <i class="fa fa-pencil-alt"></i> Edit
                                             </button>
-                                        </RouterLink>
+                                        </router-link>
                                         <button
                                             class="btn btn-danger mr-1"
                                             @click="deleteCategory(item.id)"

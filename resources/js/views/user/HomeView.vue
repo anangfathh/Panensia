@@ -15,8 +15,75 @@ import FooterComp from '../../components/FooterComp.vue'
         <div>Total: {{ $totalVisitors }}</div>
     </main>
 </template> -->
+<script setup>
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
 
-import { RouterLink } from 'vue-router';
+let products = ref([])
+
+onMounted(async () => {
+    const productResponse = await axios.get('/api/getProducts')
+    products.value = productResponse.data.products
+    console.log(products.value)
+
+    $(document).ready(function () {
+        jQuery('.slick-fade').slick({
+            slidesToScroll: 1,
+            rows: 0,
+            prevArrow: $('.slick-prev'),
+            nextArrow: $('.slick-next'),
+            dots: true,
+            dotsClass: 'slickNums',
+            fade: true,
+            adaptiveHeight: true,
+            autoplay: true,
+            infinite: true,
+            responsive: [
+                {
+                    breakpoint: 576,
+                    settings: {
+                        dots: false
+                    }
+                }
+            ]
+        })
+        jQuery('.paggSlider').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.productSliderImage',
+            arrows: false,
+            focusOnSelect: true,
+            responsive: [
+                {
+                    breakpoint: 1170,
+                    settings: {
+                        slidesToShow: 5
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }
+            ]
+        })
+    })
+})
+</script>
+
 <template>
     <main>
         <!-- introBlock -->
@@ -26,7 +93,7 @@ import { RouterLink } from 'vue-router';
                 <div>
                     <div
                         class="align w-100 d-flex align-items-center bgCover"
-                        style="background-image: url(images/b-bg.jpg)"
+                        style="background-image: url(\new-asset\images\b-bg2.jpg)"
                     >
                         <!-- holder -->
                         <div class="container position-relative holder pt-xl-10 pt-0">
@@ -79,7 +146,7 @@ import { RouterLink } from 'vue-router';
                 <div>
                     <div
                         class="align w-100 d-flex align-items-center bgCover"
-                        style="background-image: url(images/b-bg2.jpg)"
+                        style="background-image: url(\new-asset\images\b-bg2.jpg)"
                     >
                         <!-- holder -->
                         <div class="container position-relative holder pt-xl-10 pt-0">
@@ -91,27 +158,27 @@ import { RouterLink } from 'vue-router';
                                             class="title d-block text-uppercase fwEbold position-relative pl-2 mb-lg-5 mb-sm-3 mb-1"
                                             >Panensia</span
                                         >
-                                        <h2 class="fwEbold position-relative mb-xl-7 mb-lg-5">
+                                        <h1 class="fwEbold position-relative mb-xl-7 mb-lg-5">
                                             Dipanen Dari
                                             <span class="text-break d-block">Petani Terbaik</span>
-                                        </h2>
+                                        </h1>
                                         <p class="mb-xl-15 mb-lg-10">
                                             mendistribusikan produk rempah Indonesia <br />
                                             baik di pasar domestik maupun mancanegara.
                                         </p>
-                                        <a
-                                            href="shop.html"
+                                        <RouterLink
+                                            to="/produk"
                                             class="btn btnTheme btnShop fwEbold text-white md-round py-2 px-3 py-md-3 px-md-4"
                                             >Shop Now <i class="fas fa-arrow-right ml-2"></i
-                                        ></a>
+                                        ></RouterLink>
                                     </div>
                                 </div>
                                 <div class="imgHolder">
                                     <img
-                                        src="https://i.ibb.co/SBqwnZd/farm-2023-11-27-05-01-45-utc.jpg"
+                                        src="/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp"
                                         alt="image description"
                                         class=""
-                                        style="width: 1500px"
+                                        style="width: 1000px"
                                     />
                                 </div>
                             </div>
@@ -124,7 +191,7 @@ import { RouterLink } from 'vue-router';
                 <div>
                     <div
                         class="align w-100 d-flex align-items-center bgCover"
-                        style="background-image: url(images/b-bg3.jpg)"
+                        style="background-image: url(\new-asset\images\b-bg3.jpg)"
                     >
                         <!-- holder -->
                         <div class="container position-relative holder pt-xl-10 pt-0">
@@ -154,7 +221,7 @@ import { RouterLink } from 'vue-router';
                                 </div>
                                 <div class="imgHolder">
                                     <img
-                                        src="https://i.ibb.co/BqvjVSW/happy-young-farmer-couple-working-inside-cowshed-2023-11-27-04-53-18-utc.jpg"
+                                        src="/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp"
                                         alt="image description"
                                         class=""
                                         style="width: 1000px"
@@ -232,7 +299,7 @@ import { RouterLink } from 'vue-router';
             <div class="row">
                 <div class="col-12 col-lg-6 mb-lg-0 mb-4">
                     <img
-                        src="https://i.ibb.co/7SkPb4D/happy-multiracial-farmers-working-inside-greenhous-2023-11-27-04-50-09-utc-1.jpg"
+                        src="\public\assets\images\banner\happy-multiracial-farmers-working-inside-greenhous-2023-11-27-04-50-09-utc.webp"
                         alt="image description"
                         class="img-fluid"
                     />
@@ -293,7 +360,7 @@ import { RouterLink } from 'vue-router';
                 <div class="col-12 col-sm-4 mb-sm-0 mb-2">
                     <RouterLink to="/produk" class="w-100">
                         <img
-                            src="https://i.ibb.co/fHf8BbY/image-review-2.jpg"
+                            src="/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp"
                             alt="image description"
                             class="img-fluid"
                             style="width: 500px"
@@ -303,7 +370,7 @@ import { RouterLink } from 'vue-router';
                 <div class="col-12 col-sm-4">
                     <RouterLink to="/produk" class="w-100">
                         <img
-                            src="https://i.ibb.co/fHf8BbY/image-review-2.jpg"
+                            src="/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp"
                             alt="image description"
                             class="img-fluid"
                             style="width: 500px"
@@ -313,7 +380,7 @@ import { RouterLink } from 'vue-router';
                 <div class="col-12 col-sm-4">
                     <RouterLink to="/produk" class="w-100">
                         <img
-                            src="https://i.ibb.co/fHf8BbY/image-review-2.jpg"
+                            src="/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp"
                             alt="image description"
                             class="img-fluid"
                             style="width: 500px"
@@ -330,7 +397,7 @@ import { RouterLink } from 'vue-router';
             <section
                 class="subscribeSecBlock bgCover col-12 pt-xl-24 pb-xl-12 pt-lg-20 pt-md-16 pt-10 pb-md-8 pb-5"
                 style="
-                    background-image: url(https://i.ibb.co/ZhxJBFx/top-view-of-farm-lands-with-agricultural-machines-2023-11-28-15-48-38-utc.jpg);
+                    background-image: url(/public/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp);
                 "
             >
                 <header class="col-12 mainHeader mb-sm-9 mb-6 text-center">

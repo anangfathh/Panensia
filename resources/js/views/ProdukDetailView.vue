@@ -87,6 +87,9 @@ const filteredImages = (images) => {
 function redirectToTokped(link) {
     window.open(link, '_blank') // Open link in a new tab
 }
+function redirectToShopee(link) {
+    window.open(link, '_blank') // Open link in a new tab
+}
 function formatPrice(price) {
     // Format price to Indonesian Rupiah
     return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price)
@@ -155,24 +158,25 @@ function formatPrice(price) {
                                 <div class="socialNetworkLink">
                                     <a
                                         href="#"
-                                        class="btn btnShoppe btnShop fwEbold text-white py-2 px-2 mb-3"
-                                        @click="redirectToTokped(product.link_tokped)"
+                                        class="btn btnShoppe btnShop fwEbold text-black py-2 px-2"
+                                        @click="redirectToShopee(product.link_shopee)"
                                     >
                                         <img
-                                            src="https://freelogopng.com/images/all_img/1656181355shopee-icon-white.png"
+                                            src="https://freelogopng.com/images/all_img/1656181093transparent-shopee-logo-png.png"
                                             alt=""
                                             style="
                                                 width: 30px;
                                                 padding-right: 10px;
-                                                padding-bottom: 9px;
+                                                padding-bottom: 8px;
                                             "
                                         />Shopee
                                     </a>
-                                    <br />
+                                    <!-- <br /> -->
                                     <a
-                                        href="{{ product.link_shopee }}"
+                                        href="#"
                                         target="_blank"
-                                        class="btn btnTokped btnShop fwEbold text-white py-2 px-2"
+                                        class="btn btnTokped btnShop fwEbold text-black py-2 px-2"
+                                        @click="redirectToTokped(product.link_tokped)"
                                     >
                                         <img
                                             src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/tokopedia-nursing-pillow-archives-baby-loop-7.png"
@@ -183,6 +187,22 @@ function formatPrice(price) {
                                                 padding-bottom: 8px;
                                             "
                                         />Tokopedia
+                                    </a>
+                                    <a
+                                        href="#"
+                                        target="_blank"
+                                        class="btn btnTokped btnShop fwEbold text-black py-2 px-2"
+                                        @click="redirectToTokped(product.link_tiktok)"
+                                    >
+                                        <img
+                                            src="https://freelogopng.com/images/all_img/1655893962tiktok-logo-black-and-white.png"
+                                            alt=""
+                                            style="
+                                                width: 30px;
+                                                padding-right: 10px;
+                                                padding-bottom: 8px;
+                                            "
+                                        />Tiktok
                                     </a>
                                 </div>
                             </ul>

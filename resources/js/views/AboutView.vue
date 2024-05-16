@@ -4,7 +4,7 @@
         <section
             class="introBannerHolder d-flex w-100 bgCover"
             style="
-                background-image: url(https://i.ibb.co/9wmwSHB/indian-garam-masala-powder-and-colourful-spices-s-2023-11-27-05-18-00-utc.jpg);
+                background-image: url(/assets/images/banner/chili-pepper-spices-2023-11-27-05-01-26-utc.webp);
             "
         >
             <div class="container">

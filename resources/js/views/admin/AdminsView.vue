@@ -1,13 +1,7 @@
 <script>
 import axios from 'axios'
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
 
 export default {
-    components: {
-        AdminNavComp,
-        AdminFooterComp
-    },
     data() {
         return {
             admins: []

@@ -55,7 +55,7 @@ onMounted(async () => {
     }
 })
 
-const editproduct = async () => {
+const editProduct = async () => {
     // Add validation / CSRF token
 
     const formData = new FormData()
@@ -135,7 +135,7 @@ const editproduct = async () => {
                         </li>
                         <li class="breadcrumb-item">Management</li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/products"> Product </a>
+                            <router-link :to="`/admin/products`"> Product </router-link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>
@@ -265,7 +265,7 @@ const editproduct = async () => {
                             />
                         </div>
                     </div>
-                    <button @click="createProduct()" class="btn btn-primary">Create Product</button>
+                    <button @click="editProduct()" class="btn btn-primary">Edit Product</button>
                 </div>
             </div>
         </div>

@@ -3,9 +3,6 @@ import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
-
 let props = defineProps(['id'])
 let news_categories = ref([])
 let news = ref(null)
@@ -68,13 +65,13 @@ const editNews = async () => {
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item">
-                            <a href="/admin">
+                            <RouterLink :to="`/admin`">
                                 <i class="material-icons icon-20pt">home</i>
-                            </a>
+                            </RouterLink>
                         </li>
                         <li class="breadcrumb-item">Management</li>
                         <li class="breadcrumb-item">
-                            <a href="/admin/news"> News </a>
+                            <RouterLink :to="`/admin/news`"> News </RouterLink>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Edit</li>
                     </ol>

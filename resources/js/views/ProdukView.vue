@@ -41,7 +41,7 @@ function formatPrice(price) {
         <section
             class="introBannerHolder d-flex w-100 bgCover"
             style="
-                background-image: url(https://i.ibb.co/9wmwSHB/indian-garam-masala-powder-and-colourful-spices-s-2023-11-27-05-18-00-utc.jpg);
+                background-image: url(/assets/images/banner/indian-garam-masala-powder-and-colourful-spices-s-2023-11-27-05-18-00-utc.webp);
             "
         >
             <div class="container">
@@ -132,10 +132,7 @@ function formatPrice(price) {
                                         >
                                             <li class="active" style="list-style: none">
                                                 <RouterLink
-                                                    :to="{
-                                                        name: 'produk.detail',
-                                                        params: { id: item.id }
-                                                    }"
+                                                    :to="`/produk/detail/${item.id}`"
                                                     style="border-radius: 10px"
                                                     >Selengkapnya</RouterLink
                                                 >
@@ -145,10 +142,7 @@ function formatPrice(price) {
                                     <div class="text-center py-5 px-4">
                                         <span class="title d-block mb-2"
                                             ><RouterLink
-                                                :to="{
-                                                    name: 'produk.detail',
-                                                    params: { id: item.id }
-                                                }"
+                                                :to="`/produk/detail/${item.id}`"
                                                 style="border-radius: 10px"
                                                 >{{ item.name }}</RouterLink
                                             ></span

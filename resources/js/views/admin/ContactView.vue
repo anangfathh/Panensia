@@ -1,12 +1,5 @@
 <script>
-import AdminNavComp from '../../components/AdminNavComp.vue'
-import AdminFooterComp from '../../components/AdminFooterComp.vue'
-
 export default {
-    components: {
-        AdminNavComp,
-        AdminFooterComp
-    },
     data() {
         return {
             contacts: []
@@ -101,10 +94,7 @@ export default {
                                             <span class="d-flex align-items-center mb-1">
                                                 <router-link
                                                     class="text-dark-gray"
-                                                    :to="{
-                                                        name: 'admin.contacts.detail',
-                                                        params: { id: contact.id }
-                                                    }"
+                                                    :to="`/admin/contacts/view/${contact.id}`"
                                                 >
                                                     <strong>{{ contact.name }}</strong>
                                                 </router-link>
